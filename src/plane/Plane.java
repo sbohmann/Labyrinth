@@ -26,6 +26,10 @@ public class Plane<E> {
         chunk[offset] = value;
     }
 
+    public int numberOfChunks() {
+        return chunks.size();
+    }
+
     private Object[] getChunkOrNull(int x, int y) {
         Long key = ChunkAddress.chunkKey(x, y);
         return chunks.get(key);

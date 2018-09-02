@@ -5,7 +5,7 @@ import mazeClient.Direction;
 import mazeClient.MazeClient;
 
 class Solver {
-    MazeClient client;
+    private MazeClient client;
 
     Solver() {
         this.client = new MazeClient();

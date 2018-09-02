@@ -1,24 +1,26 @@
 package mazeClient;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.Objects;
 
 public class AvailableDirections {
-    private boolean north;
-    private boolean east;
-    private boolean south;
-    private boolean west;
+    private final boolean north;
+    private final boolean east;
+    private final boolean south;
+    private final boolean west;
+
+    public AvailableDirections(@JsonProperty("North") boolean north, @JsonProperty("East") boolean east, @JsonProperty("South") boolean south, @JsonProperty("West") boolean west) {
+        this.north = north;
+        this.east = east;
+        this.south = south;
+        this.west = west;
+    }
 
     @JsonGetter("North")
     public boolean getNorth() {
         return north;
-    }
-
-    @JsonSetter("North")
-    public void setNorth(boolean north) {
-        this.north = north;
     }
 
     @JsonGetter("East")
@@ -26,29 +28,14 @@ public class AvailableDirections {
         return east;
     }
 
-    @JsonSetter("East")
-    public void setEast(boolean east) {
-        this.east = east;
-    }
-
     @JsonGetter("South")
     public boolean getSouth() {
         return south;
     }
 
-    @JsonSetter("South")
-    public void setSouth(boolean south) {
-        this.south = south;
-    }
-
     @JsonGetter("West")
     public boolean getWest() {
         return west;
-    }
-
-    @JsonSetter("West")
-    public void setWest(boolean west) {
-        this.west = west;
     }
 
     @Override
@@ -59,10 +46,5 @@ public class AvailableDirections {
                 ", south=" + south +
                 ", west=" + west +
                 '}';
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(north, east, south, west);
     }
 }

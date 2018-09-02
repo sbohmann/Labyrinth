@@ -3,8 +3,6 @@ package mazeClient;
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Objects;
-
 public class AvailableDirections {
     private final boolean north;
     private final boolean east;

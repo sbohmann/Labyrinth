@@ -42,7 +42,7 @@ public class AvailableDirections {
     }
 
     @JsonGetter("West")
-    boolean getWest() {
+    public boolean getWest() {
         return west;
     }
 

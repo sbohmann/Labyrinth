@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 
 import java.util.Objects;
 
-public class Directions {
+public class AvailableDirections {
     private boolean north;
     private boolean east;
     private boolean south;
@@ -53,7 +53,7 @@ public class Directions {
 
     @Override
     public String toString() {
-        return "Directions{" +
+        return "AvailableDirections{" +
                 "north=" + north +
                 ", east=" + east +
                 ", south=" + south +

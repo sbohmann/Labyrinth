@@ -18,13 +18,27 @@ public class MazeClient {
     }
 
     public void getDirections() {
-        Directions responseBody = client
+        AvailableDirections responseBody = client
                 .get()
                 .uri("/directions")
                 .retrieve()
-                .bodyToMono(Directions.class)
+                .bodyToMono(AvailableDirections.class)
                 .block();
-        System.out.println("Response body: "+ responseBody);
+        System.out.println("Response body: " + responseBody);
+    }
+
+    public void move(Direction direction) {
+        client
+                .post()
+                .uri("/move")
+                .syncBody(direction)
+                .retrieve()
+                .onStatus(status -> true, response -> {
+                    System.out.println("POST response status: " + response.statusCode());
+                    return Mono.empty();
+                })
+                .bodyToMono(String.class)
+                .block();
     }
 
     private Mono<? extends Throwable> handleStatus(ClientResponse clientResponse) {

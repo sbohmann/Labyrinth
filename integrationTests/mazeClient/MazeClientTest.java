@@ -26,6 +26,9 @@ class MazeClientTest {
 
     @Test
     void getDirections() {
-        new MazeClient().getDirections();
+        MazeClient client = new MazeClient();
+        client.getDirections();
+        client.move(Direction.East);
+        client.getDirections();
     }
 }

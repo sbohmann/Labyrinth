@@ -24,19 +24,6 @@ public class SimpleRestClient {
     }
 
 
-    public <T> void post(String path, T value) {
-        ClientResponse response = client
-                .post()
-                .uri(path)
-                .syncBody(value)
-                .exchange()
-                .block();
-        HttpStatus status = response.statusCode();
-        if (!status.is2xxSuccessful()) {
-            throw new IllegalStateException("post received unexpected status code " + status);
-        }
-    }
-
     public <T> T get(String path, Class<T> type) {
         return client
                 .get()
@@ -44,6 +31,32 @@ public class SimpleRestClient {
                 .retrieve()
                 .bodyToMono(type)
                 .block();
+    }
+
+    public <T> void post(String path, T value) {
+        ClientResponse response = client
+                .post()
+                .uri(path)
+                .syncBody(value)
+                .exchange()
+                .block();
+        checkStatus(response);
+    }
+
+    public void post(String path) {
+        ClientResponse response = client
+                .post()
+                .uri(path)
+                .exchange()
+                .block();
+        checkStatus(response);
+    }
+
+    private void checkStatus(ClientResponse response) {
+        HttpStatus status = response.statusCode();
+        if (!status.is2xxSuccessful()) {
+            throw new IllegalStateException("post received unexpected status code " + status);
+        }
     }
 
     public <T> T convert(JsonNode content, Class<T> type) {

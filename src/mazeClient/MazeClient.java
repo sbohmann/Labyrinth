@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import rest.SimpleRestClient;
 
 public class MazeClient {
-    SimpleRestClient client;
+    private final SimpleRestClient client;
 
     public MazeClient() {
         client = new SimpleRestClient("http://localhost:3000");
@@ -32,5 +32,9 @@ public class MazeClient {
 
     public void move(Direction direction) {
         client.post("/move", direction);
+    }
+
+    public void reset() {
+        client.post("/reset");
     }
 }

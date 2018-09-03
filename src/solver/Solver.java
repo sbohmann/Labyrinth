@@ -12,6 +12,7 @@ class Solver {
     }
 
     void run() {
+        client.reset();
         move(Direction.East);
         move(Direction.West);
     }

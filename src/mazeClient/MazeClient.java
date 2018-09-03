@@ -81,9 +81,4 @@ public class MazeClient {
             throw new IllegalArgumentException(exception);
         }
     }
-
-    private Mono<? extends Throwable> handleStatus(ClientResponse clientResponse) {
-        System.out.println("Status: " + clientResponse.statusCode());
-        return Mono.empty();
-    }
 }

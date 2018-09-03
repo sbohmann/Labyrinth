@@ -14,10 +14,10 @@ public class SimpleRestClient {
     private final WebClient client;
     private final ObjectMapper objectMapper;
 
-    public SimpleRestClient() {
+    public SimpleRestClient(String baseUrl) {
         client = WebClient
                 .builder()
-                .baseUrl("http://localhost:3000")
+                .baseUrl(baseUrl)
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .build();
         objectMapper = new ObjectMapper();
@@ -33,7 +33,7 @@ public class SimpleRestClient {
                 .block();
         HttpStatus status = response.statusCode();
         if (!status.is2xxSuccessful()) {
-            throw new IllegalStateException("move received unexpected status code " + status);
+            throw new IllegalStateException("post received unexpected status code " + status);
         }
     }
 

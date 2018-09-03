@@ -7,7 +7,7 @@ public class MazeClient {
     SimpleRestClient client;
 
     public MazeClient() {
-        client = new SimpleRestClient();
+        client = new SimpleRestClient("http://localhost:3000");
     }
 
     public Position getPosition(){

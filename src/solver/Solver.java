@@ -19,6 +19,8 @@ class Solver {
     private void move(Direction direction) {
         while (free(client.getAvailableDirections(), direction)) {
             client.move(direction);
+            System.out.println(client.getState());
+            System.out.println(client.getPosition());
         }
     }
 

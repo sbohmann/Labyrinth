@@ -38,7 +38,7 @@ class PlaneTest {
     @Test
     void positionsInData() {
         data.forEach((position, value) -> {
-            Assertions.assertEquals(data.get(position), plane.get(position.x, position.y));
+            Assertions.assertEquals(value, plane.get(position.x, position.y));
         });
     }
 

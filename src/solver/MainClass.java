@@ -1,6 +1,6 @@
 package solver;
 
-public class MainClass {
+class MainClass {
     public static void main(String[] args) {
         new Solver().run();
     }

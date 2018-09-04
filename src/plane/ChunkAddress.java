@@ -35,7 +35,7 @@ class ChunkAddress {
      * @param value absolute x or y cooordinate
      * @return x or y coordinate inside chunk (0 ... 31)
      */
-    static int getCoordinateInsideChunk(int value) {
+    private static int getCoordinateInsideChunk(int value) {
         if (value < 0) {
             value += 1;
             value = - value;

@@ -54,7 +54,7 @@ public class RestClient {
         return baseUrl.resolve(path);
     }
 
-    public <T> T convert(JsonNode content, Class<T> type) {
+    private <T> T convert(JsonNode content, Class<T> type) {
         try {
             return objectMapper.readerFor(type).readValue(content);
         } catch (IOException exception) {

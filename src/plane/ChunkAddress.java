@@ -24,7 +24,7 @@ class ChunkAddress {
     static int getChunkCoordinateInGrid(int value) {
         if (value < 0) {
             value += 1;
-            value = value /= ChunkSideLength;
+            value /= ChunkSideLength;
             return value - 1;
         } else {
             return value / ChunkSideLength;

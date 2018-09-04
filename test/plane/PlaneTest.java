@@ -33,13 +33,13 @@ class PlaneTest {
             Assertions.assertEquals(data.get(position), plane.get(position.x, position.y));
         });
         System.out.println("data.size(): " + data.size());
+        System.out.println("number of chunks: "+ plane.numberOfChunks());
     }
 
     @Test
     void positionsInData() {
-        data.forEach((position, value) -> {
-            Assertions.assertEquals(value, plane.get(position.x, position.y));
-        });
+        data.forEach((position, value) ->
+                Assertions.assertEquals(value, plane.get(position.x, position.y)));
     }
 
     @Test
@@ -84,11 +84,10 @@ class PlaneTest {
     }
 
     private void reportLoopCount(int value) {
-        if (value % 100_000 == 0) {
+        if (value % 1_000_000 == 0) {
             System.out.printf(
-                    "%6.3f%% - number of chunks: %d%n",
-                    100.0 * value / NumberOfPositions,
-                    plane.numberOfChunks());
+                    "%6.3f%%%n",
+                    100.0 * value / NumberOfPositions);
         }
     }
 }

@@ -2,13 +2,7 @@ package rest;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.reactive.function.client.ClientResponse;
-import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,26 +10,36 @@ import java.net.URISyntaxException;
 
 public class RestClient {
     private URI baseUrl;
-    private final RestTemplate client;
+    private final RestTemplate restTemplate;
     private final ObjectMapper objectMapper;
 
     public RestClient(String baseUrl) {
         this.baseUrl = uriFromString(baseUrl);
-        client = new RestTemplate();
+        restTemplate = new RestTemplate();
         objectMapper = new ObjectMapper();
     }
 
 
     public <T> T get(String path, Class<T> type) {
-        return client.getForObject(uriForPath(path), type);
+        return restTemplate.getForObject(uriForPath(path), type);
+    }
+
+    public <T> T getElement(String path, Class<T> type, String ... keys) {
+        JsonNode value = get(
+                path,
+                JsonNode.class);
+        for (String key : keys) {
+            value = value.get(key);
+        }
+        return convert(value, type);
     }
 
     public <T> void post(String path, T value) {
-        client.postForLocation(uriForPath(path), value);
+        restTemplate.postForLocation(uriForPath(path), value);
     }
 
     public void post(String path) {
-        client.postForLocation(uriForPath(path), null);
+        restTemplate.postForLocation(uriForPath(path), null);
     }
 
     private URI uriFromString(String urlString) {

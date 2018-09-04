@@ -1,6 +1,5 @@
 package mazeClient;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import rest.RestClient;
 
 public class MazeClient {
@@ -11,10 +10,10 @@ public class MazeClient {
     }
 
     public Position getPosition(){
-        JsonNode content = client.get(
+        return client.getElement(
                 "/position",
-                JsonNode.class);
-        return client.convert(content.get("Position"), Position.class);
+                Position.class,
+                "Position");
     }
 
     public AvailableDirections getAvailableDirections() {
@@ -24,10 +23,10 @@ public class MazeClient {
     }
 
     public State getState() {
-        JsonNode content = client.get(
+        return client.getElement(
                 "/state",
-                JsonNode.class);
-        return client.convert(content.get("State"), State.class);
+                State.class,
+                "State");
     }
 
     public void move(Direction direction) {

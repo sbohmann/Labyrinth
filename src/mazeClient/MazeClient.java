@@ -1,13 +1,13 @@
 package mazeClient;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import rest.SimpleRestClient;
+import rest.RestClient;
 
 public class MazeClient {
-    private final SimpleRestClient client;
+    private final RestClient client;
 
     public MazeClient() {
-        client = new SimpleRestClient("http://localhost:3000");
+        client = new RestClient("http://localhost:3000");
     }
 
     public Position getPosition(){

@@ -25,9 +25,7 @@ public class RestClient {
     }
 
     public <T> T getElement(String path, Class<T> type, String ... keys) {
-        JsonNode value = get(
-                path,
-                JsonNode.class);
+        JsonNode value = get(path, JsonNode.class);
         value = getSubNode(value, keys);
         return convert(value, type);
     }

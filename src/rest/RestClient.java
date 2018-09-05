@@ -28,10 +28,15 @@ public class RestClient {
         JsonNode value = get(
                 path,
                 JsonNode.class);
+        value = getSubNode(value, keys);
+        return convert(value, type);
+    }
+
+    private JsonNode getSubNode(JsonNode value, String[] keys) {
         for (String key : keys) {
             value = value.get(key);
         }
-        return convert(value, type);
+        return value;
     }
 
     public <T> void post(String path, T value) {
